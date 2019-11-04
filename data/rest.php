@@ -2,7 +2,8 @@
 
 // Populate using rest CALL
 
-$service_url = 'http://'.getenv('SERVICE').':8080/rest_items.json';
+// $service_url = 'http://'.getenv('SERVICE').':8080/rest_items.json';
+$service_url = getenv('SERVICE');
 
 $curl = curl_init($service_url);                                                                                                                           
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, true); 
