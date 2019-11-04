@@ -19,7 +19,7 @@ if ($curl_response === false) {
 }
 curl_close($curl);
 
-$response = json_decode($response, true);  
+$items = json_decode($response, true);  
 
 $_SESSION['item'] = array();
 
@@ -27,7 +27,7 @@ $_SESSION['item'] = array();
 $selector = $_SESSION['SELECTOR'];
 $i = 0;
 
-foreach ($response['items'] as $item) {
+foreach ($items as $item) {
 
     $id = $item['Item']['id'];
     $name = $item['Item']['name'];
