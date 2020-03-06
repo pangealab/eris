@@ -22,7 +22,7 @@ Whenever the user rates an item, an entry is written to the php log. These entri
 1. Deploy using S2I
 
     ```
-    oc new-app php:7.1~https://github.com/advlab/eris.git -e SERVICE=http://erebus-sandbox.openshift.sytes.net/api/items --strategy=source -l app=eris
+    oc new-app php:7.1~https://github.com/advlab/eris.git -e SERVICE=http://erebus-perseus.openshift.sytes.net/api/items --strategy=source -l app=eris
     oc expose svc/eris
     ```
 
