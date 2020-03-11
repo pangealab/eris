@@ -10,6 +10,15 @@ Lists can be customized by editing the include/selector.php to point to set the 
 
 Whenever the user rates an item, an entry is written to the php log. These entries can be filtered and then used to test hypotheses regarding user engagement.
 
+# Clone Project
+
+1. Clone Project
+
+	```
+	git clone git@github.com:advlab/eris.git
+	cd eris
+    ```
+
 # Login to OKD
 
 1. Login to OKD Console and get Token
@@ -19,15 +28,6 @@ Whenever the user rates an item, an entry is written to the php log. These entri
 	```
 	oc login https://OKD-URL:OKD-PORT --token=YOUR-TOKEN
 	```
-
-# Clone Project
-
-1. Clone Project
-
-	```
-	git clone git@github.com:advlab/eris.git
-	cd eris
-    ```
 
 # Deploy on OKD using S2I
 
