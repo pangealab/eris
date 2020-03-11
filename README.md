@@ -10,9 +10,17 @@ Lists can be customized by editing the include/selector.php to point to set the 
 
 Whenever the user rates an item, an entry is written to the php log. These entries can be filtered and then used to test hypotheses regarding user engagement.
 
-# Deploy on OKD
+# Login to OKD
 
-1. Login to OKD
+1. Login to OKD Console and get Token
+
+1. Login to OKD unsing the CLI
+
+	```
+	oc login https://OKD-URL:OKD-PORT --token=YOUR-TOKEN
+	```
+
+# Clone Project
 
 1. Clone Project
 
@@ -21,7 +29,9 @@ Whenever the user rates an item, an entry is written to the php log. These entri
 	cd eris
     ```
 
-1. Deploy on OKD
+# Deploy on OKD using S2I
+
+1. Deploy on OKD using S2I
 
     ```
     oc new-app php:7.1~https://github.com/advlab/eris.git -e SERVICE=http://erebus-perseus.openshift.sytes.net/api/items -e SELECTOR=pets --strategy=source -l app=eris
