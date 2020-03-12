@@ -94,7 +94,12 @@ objects:
           monitor: 'true'
       spec:
         containers:
-          - image: 'docker-registry.default.svc:5000/perseus/eris:latest'
+          - env:
+              - name: SELECTOR
+                value: pets
+              - name: SERVICE
+                value: 'http://erebus-perseus.openshift.sytes.net/api/items'
+            image: 'docker-registry.default.svc:5000/perseus/eris:latest'
             imagePullPolicy: IfNotPresent
             name: eris
             ports:
