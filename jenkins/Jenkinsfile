@@ -10,6 +10,7 @@ pipeline {
     timeout(time: 20, unit: 'MINUTES')
   }
   stages {
+<<<<<<< HEAD
     stage("Build Image") {
       steps {
         echo "Build Image..."
@@ -21,6 +22,18 @@ pipeline {
       steps {
         echo "Deploy Pod"
         sh 'oc process -f templates/deploy-eris.yml | oc apply -f -'
+=======
+    stage("Stage 1") {
+      steps {
+        echo "Stage 1: Step 1..."
+        /* Step here */
+      }
+    }  
+    stage("Stage 2") {
+      steps {
+        echo "Stage 2: Step 1..."
+        /* Step here */
+>>>>>>> 94696c762e619adb15aee1175845556331ba6052
       }
     }
   }
