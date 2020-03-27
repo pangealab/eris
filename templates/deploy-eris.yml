@@ -70,7 +70,7 @@ objects:
       monitor: 'true'
     name: eris
   spec:
-    replicas: 2
+    replicas: 4
     revisionHistoryLimit: 10
     selector:
       app: eris
