@@ -38,6 +38,21 @@ Whenever the user rates an item, an entry is written to the php log. These entri
     oc expose svc/eris
     ```
 
+# Deploy on OKD using Templates
+
+1. Build Image
+
+    ```
+    oc process -f templates/build-eris.yml | oc apply -f -
+    oc start-build eris --wait
+    ```
+
+1. Deploy Pod
+
+    ```
+    oc process -f templates/deploy-eris.yml | oc apply -f -
+    ```    
+
 # Undeploy from OKD
 
 1. Delete all application objects
