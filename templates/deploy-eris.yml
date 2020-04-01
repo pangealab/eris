@@ -6,6 +6,7 @@ kind: Template
 labels:
   app: eris
   template: deploy-eris
+  application: Furballs
 message: Deploy Eris
 metadata:
   name: deploy-eris
@@ -26,6 +27,7 @@ objects:
     labels:
       app: eris
       monitor: 'true'
+      application: Furballs
     name: eris
   spec:
     ports:
@@ -50,6 +52,7 @@ objects:
     labels:
       app: eris
       monitor: 'true'
+      application: Furballs
     name: eris
   spec:
     port:
@@ -68,6 +71,7 @@ objects:
     labels:
       app: eris
       monitor: 'true'
+      application: Furballs
     name: eris
   spec:
     replicas: 1
@@ -92,6 +96,7 @@ objects:
           app: eris
           deploymentconfig: eris
           monitor: 'true'
+          application: Furballs
       spec:
         containers:
           - env:
