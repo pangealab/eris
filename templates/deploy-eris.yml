@@ -74,7 +74,7 @@ objects:
       application: Furballs
     name: eris
   spec:
-    replicas: 4
+    replicas: 1
     revisionHistoryLimit: 10
     selector:
       app: eris
