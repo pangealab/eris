@@ -101,7 +101,7 @@ objects:
         containers:
           - env:
               - name: SELECTOR
-                value: cities
+                value: pets
               - name: SERVICE
                 value: 'http://erebus-perseus.openshift.sytes.net/api/items'
             image: 'docker-registry.default.svc:5000/perseus/eris:latest'
