@@ -74,7 +74,7 @@ objects:
       application: Furballs
     name: eris
   spec:
-    replicas: 2
+    replicas: 1
     revisionHistoryLimit: 10
     selector:
       app: eris
@@ -101,7 +101,7 @@ objects:
         containers:
           - env:
               - name: SELECTOR
-                value: cities
+                value: pets
               - name: SERVICE
                 value: 'http://erebus-perseus.openshift.sytes.net/api/items'
             image: 'docker-registry.default.svc:5000/perseus/eris:latest'
