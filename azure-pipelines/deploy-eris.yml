@@ -41,8 +41,8 @@ stages:
         - task: AzureResourceManagerTemplateDeployment@3
           inputs:
             deploymentScope: 'Resource Group'
-            azureResourceManagerConnection: 'stage(39fa8f87-83f2-4d92-a424-408ebdfbeb19)'
-            subscriptionId: '39fa8f87-83f2-4d92-a424-408ebdfbeb19'
+            azureResourceManagerConnection: 
+            subscriptionId: 
             action: 'Create Or Update Resource Group'
             resourceGroupName: '$(resourceGroupName)'
             location: '$(location)'
@@ -63,8 +63,8 @@ stages:
         - task: AzureResourceManagerTemplateDeployment@3
           inputs:
             deploymentScope: 'Resource Group'
-            azureResourceManagerConnection: 'stage(39fa8f87-83f2-4d92-a424-408ebdfbeb19)'
-            subscriptionId: '39fa8f87-83f2-4d92-a424-408ebdfbeb19'
+            azureResourceManagerConnection:  
+            subscriptionId: 
             action: 'Create Or Update Resource Group'
             resourceGroupName: '$(resourceGroupName)'
             location: '$(location)'
@@ -85,9 +85,9 @@ stages:
         - task: DownloadPackage@1
           inputs:
             packageType: 'upack'
-            feed: '07fddbf5-f7a6-4ce5-a109-cadc2b066758/0eb7d511-01cf-49d7-a5bf-4c8460584635'
-            view: '468ac395-440e-41ae-86b0-f3886ac6ef8d'
-            definition: '95e507a9-a087-43bb-ba1d-04be68a8fa9a'
+            feed: 
+            view: 
+            definition: 
             version: '0.0.*'
             downloadPath: '$(System.ArtifactsDirectory)'
 
@@ -95,7 +95,7 @@ stages:
         - task: AzureRmWebAppDeployment@4
           inputs:
             ConnectionType: 'AzureRM'
-            azureSubscription: 'stage(2)(39fa8f87-83f2-4d92-a424-408ebdfbeb19)'
+            azureSubscription: 
             appType: 'webAppLinux'
             WebAppName: '$(webAppName)'
             packageForLinux: '$(System.ArtifactsDirectory)/drop/*.zip'
