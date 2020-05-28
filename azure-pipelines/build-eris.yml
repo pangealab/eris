@@ -49,7 +49,7 @@ stages:
             publishLocation: 'Container'
 
   ################################################################################
-  #                     Publish WAR File to Artifacts Stage                      #
+  #                     Publish ZIP File to Artifacts Stage                      #
   ################################################################################    
   - stage: Publish_Artifact
     jobs:

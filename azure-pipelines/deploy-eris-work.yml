@@ -1,0 +1,84 @@
+# Maven package Java project Web App to Linux on Azure
+# Build your Java project and deploy it to Azure as a Linux web app
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/java
+
+# trigger: 
+# - none
+# - master
+
+trigger:
+  branches:
+    include:
+    - deploy
+
+variables:
+
+  ### Variables ###
+  accountName: 'stage'
+  applicationName: 'eris'
+  resourceGroupName: '$(applicationName)-rg'
+  appServicePlanName: '$(applicationName)-sp'
+  prefix: '$(accountName)-$(applicationName)'
+  webAppName: '$(prefix)-app'
+  location: 'East US'
+  skuName: 'B1'
+  skuCapacity: 1
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+stages:
+
+  ################################################################################
+  #                         Initialize Azure Stage                               #
+  ################################################################################
+  - stage: Init_Env
+    jobs:
+      - job: Create_Service_Plan
+        steps:
+        # Use ARM Template to create Azure Service Plan
+        - task: AzureResourceManagerTemplateDeployment@3
+          inputs:
+            deploymentScope: 'Resource Group'
+            azureResourceManagerConnection: 'stage(39fa8f87-83f2-4d92-a424-408ebdfbeb19)'
+            subscriptionId: '39fa8f87-83f2-4d92-a424-408ebdfbeb19'
+            action: 'Create Or Update Resource Group'
+            resourceGroupName: '$(resourceGroupName)'
+            location: '$(location)'
+            templateLocation: 'Linked artifact'
+            csmFile: 'azure-arm/eris-sp.json'
+            csmParametersFile: 'azure-arm/eris-sp.parameters.json'
+            overrideParameters: '-appServicePlanName $(appServicePlanName) -skuName $(skuName) -skuCapacity $(skuCapacity)'
+            deploymentMode: 'Incremental'
+
+  ################################################################################
+  #                         Create App Service Stage                             #
+  ################################################################################  
+  - stage: Create_App_Service
+    jobs:
+      - job: Create_App_Service
+        steps:
+        # Use ARM Template to create Azure Application Service
+        - task: AzureResourceManagerTemplateDeployment@3
+          inputs:
+            deploymentScope: 'Resource Group'
+            azureResourceManagerConnection: 'stage(39fa8f87-83f2-4d92-a424-408ebdfbeb19)'
+            subscriptionId: '39fa8f87-83f2-4d92-a424-408ebdfbeb19'
+            action: 'Create Or Update Resource Group'
+            resourceGroupName: '$(resourceGroupName)'
+            location: '$(location)'
+            templateLocation: 'Linked artifact'
+            csmFile: 'azure-arm/eris-app.json'
+            csmParametersFile: 'azure-arm/eris-app.parameters.json'
+            overrideParameters: '-webAppName $(webAppName) -appServicePlanName $(appServicePlanName)'
+            deploymentMode: 'Incremental'
+
+  ################################################################################
+  #                            Deploy PHP App Stage                              #
+  ################################################################################  
+  # - stage: Create_App_Service
+  #   jobs:
+  #     - job: Create_App_Service
+  #       steps:
+        # Use ARM Template to create Azure Application Service
