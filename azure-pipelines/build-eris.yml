@@ -74,6 +74,5 @@ stages:
             feedsToUsePublish: 'internal'
             vstsFeedPublish: '07fddbf5-f7a6-4ce5-a109-cadc2b066758/0eb7d511-01cf-49d7-a5bf-4c8460584635'
             vstsFeedPackagePublish: 'eris'
-            versionOption: 'custom'
-            versionPublish: '0.0.*'
+            versionOption: 'patch'
             packagePublishDescription: 'Latest'
