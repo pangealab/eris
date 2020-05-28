@@ -90,7 +90,6 @@
                 "httpLoggingEnabled": true,
                 "logsDirectorySizeLimit": 100,
                 "detailedErrorLoggingEnabled": false,
-                "publishingUsername": "[parameters('webAppName')]",
                 "scmType": "LocalGit",
                 "use32BitWorkerProcess": true,
                 "webSocketsEnabled": false,
