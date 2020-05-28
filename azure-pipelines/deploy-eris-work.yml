@@ -31,54 +31,21 @@ pool:
 stages:
 
   ################################################################################
-  #                         Initialize Azure Stage                               #
-  ################################################################################
-  - stage: Init_Env
-    jobs:
-      - job: Create_Service_Plan
-        steps:
-        # Use ARM Template to create Azure Service Plan
-        - task: AzureResourceManagerTemplateDeployment@3
-          inputs:
-            deploymentScope: 'Resource Group'
-            azureResourceManagerConnection: 'stage(39fa8f87-83f2-4d92-a424-408ebdfbeb19)'
-            subscriptionId: '39fa8f87-83f2-4d92-a424-408ebdfbeb19'
-            action: 'Create Or Update Resource Group'
-            resourceGroupName: '$(resourceGroupName)'
-            location: '$(location)'
-            templateLocation: 'Linked artifact'
-            csmFile: 'azure-arm/eris-sp.json'
-            csmParametersFile: 'azure-arm/eris-sp.parameters.json'
-            overrideParameters: '-appServicePlanName $(appServicePlanName) -skuName $(skuName) -skuCapacity $(skuCapacity)'
-            deploymentMode: 'Incremental'
-
-  ################################################################################
-  #                         Create App Service Stage                             #
+  #                            Deploy Artifact Stage                             #
   ################################################################################  
-  - stage: Create_App_Service
+  - stage: Deploy_Artifact
     jobs:
-      - job: Create_App_Service
+      - job: Download_Package
         steps:
-        # Use ARM Template to create Azure Application Service
-        - task: AzureResourceManagerTemplateDeployment@3
+        # Download latest JAR file package from Artifact Feed
+        - task: DownloadPackage@1
           inputs:
-            deploymentScope: 'Resource Group'
-            azureResourceManagerConnection: 'stage(39fa8f87-83f2-4d92-a424-408ebdfbeb19)'
-            subscriptionId: '39fa8f87-83f2-4d92-a424-408ebdfbeb19'
-            action: 'Create Or Update Resource Group'
-            resourceGroupName: '$(resourceGroupName)'
-            location: '$(location)'
-            templateLocation: 'Linked artifact'
-            csmFile: 'azure-arm/eris-app.json'
-            csmParametersFile: 'azure-arm/eris-app.parameters.json'
-            overrideParameters: '-webAppName $(webAppName) -appServicePlanName $(appServicePlanName)'
-            deploymentMode: 'Incremental'
+            packageType: 'upack'
+            feed: '3440706d-f58a-48bc-8ada-422c0cf81703/2bd1b001-e228-4900-a84b-e5729ab320ae'
+            view: 'd7297a1d-59e8-468d-8c80-a9ed3be6fb7f'
+            definition: '2e7594a2-26fe-40cd-af59-8886e59bd9ba'
+            version: '0.0.*'
+            downloadPath: '$(System.ArtifactsDirectory)'
 
-  ################################################################################
-  #                            Deploy PHP App Stage                              #
-  ################################################################################  
-  # - stage: Create_App_Service
-  #   jobs:
-  #     - job: Create_App_Service
-  #       steps:
-        # Use ARM Template to create Azure Application Service
+        # Deploy JAR file to Azure Application Service
+        - task: AzureRmWebAppDeployment@4
