@@ -46,7 +46,7 @@
                         {
                             "name": "SERVICE",
                             "value": "http://stage-erebus-app.azurewebsites.net/api/items"
-                        },
+                        }
                     ]
                 },
                 "scmSiteAlsoStopped": false,
