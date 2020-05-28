@@ -73,3 +73,12 @@ stages:
             csmParametersFile: 'azure-arm/eris-app.parameters.json'
             overrideParameters: '-webAppName $(webAppName) -appServicePlanName $(appServicePlanName)'
             deploymentMode: 'Incremental'
+
+  ################################################################################
+  #                            Deploy PHP App Stage                              #
+  ################################################################################  
+  # - stage: Create_App_Service
+  #   jobs:
+  #     - job: Create_App_Service
+  #       steps:
+        # Use ARM Template to create Azure Application Service
