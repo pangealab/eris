@@ -25,36 +25,22 @@ pool:
 stages:
 
   ################################################################################
-  #                             Build WAR File Stage                             #
+  #                             Build ZIP File Stage                             #
   ################################################################################  
   - stage: Build_Artifact
     jobs:
       - job: Build_Artifact
         steps:
-
-        # Run Maven package to build WAR file
-        - task: Maven@3
-          displayName: 'Maven Package'
+      
+        - task: ArchiveFiles@2
           inputs:
-            mavenPomFile: 'pom.xml'
-            mavenOptions: '-Xmx3072m'
-            javaHomeOption: 'JDKVersion'
-            jdkVersionOption: '1.8'
-            jdkArchitectureOption: 'x64'
-            publishJUnitResults: true
-            testResultsFiles: '**/surefire-reports/TEST-*.xml'
-            goals: 'package'
-            options: '-DskipTests=true'
+            rootFolderOrFile: '$(Build.BinariesDirectory)'
+            includeRootFolder: true
+            archiveType: 'zip'
+            archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+            replaceExistingArchive: true
 
-        # Copy WAR File to Staging Folder
-        - task: CopyFiles@2
-          displayName: 'Stage Files'
-          inputs:
-            SourceFolder: 'target'
-            Contents: '*.jar'
-            TargetFolder: '$(Build.ArtifactStagingDirectory)'
-
-        # Publish WAR File as Pipeline Build
+        # Publish ZIP File as Pipeline Build
         - task: PublishBuildArtifacts@1
           displayName: 'Publish Build'
           inputs:
