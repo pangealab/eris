@@ -54,5 +54,5 @@ stages:
             azureSubscription: 'stage(2)(39fa8f87-83f2-4d92-a424-408ebdfbeb19)'
             appType: 'webAppLinux'
             WebAppName: '$(webAppName)'
-            packageForLinux: '$(System.ArtifactsDirectory)/drop/*.jar'
+            packageForLinux: '$(System.ArtifactsDirectory)/drop/*.zip'
             RuntimeStack: 'PHP|7.2'
