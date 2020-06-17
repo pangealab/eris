@@ -61,7 +61,7 @@
                     "appSettings": [
                         {
                             "name": "SELECTOR",
-                            "value": "pets"
+                            "value": "cities"
                         },
                         {
                             "name": "SERVICE",
