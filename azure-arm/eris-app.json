@@ -158,7 +158,7 @@
             }
         },
         {
-            "name": "Eris",
+            "name": "ErisAG1",
             "type": "Microsoft.Insights/actionGroups",
             "apiVersion": "2019-03-01",
             "location": "Global",
@@ -169,7 +169,7 @@
                 "service": "furball"
             },
             "properties": {
-                "groupShortName": "Eris",
+                "groupShortName": "ErisAG1",
                 "enabled": true,
                 "emailReceivers": [
                     {
@@ -191,7 +191,16 @@
                     "identifierUri": null,
                     "name": "orlandodemo04",
                     "objectId": null,
-                    "serviceUri": "https://orlandodemo04.service-now.com/api/global/em/inbound_event_azure",
+                    "serviceUri": "https://orlandodemo04.service-now.com/api/global/em/inbound_event_azure_webhook?service=e757ed56db555010230790c7db961958",
+                    "tenantId": null,
+                    "useAadAuth": false,
+                    "useCommonAlertSchema": false
+                  },
+                  {
+                    "identifierUri": null,
+                    "name": "pagerduty",
+                    "objectId": null,
+                    "serviceUri": "https://events.pagerduty.com/integration/2845aa7c0a444a22894ebdb21640ee86/enqueue",
                     "tenantId": null,
                     "useAadAuth": false,
                     "useCommonAlertSchema": false
@@ -207,18 +216,18 @@
             }
         },
         {
-            "name": "Eris",
+            "name": "ErisAL1",
             "type": "Microsoft.Insights/metricAlerts",
             "location": "Global",
             "apiVersion": "2018-03-01",
             "dependsOn": [
-                "[resourceId('Microsoft.Insights/actionGroups', 'Eris')]"
+                "[resourceId('Microsoft.Insights/actionGroups', 'ErisAG1')]"
             ],
             "tags": {
                 "service": "furball"
             },
             "properties": {
-                "description": "Eris",
+                "description": "ErisAL1",
                 "severity": 0,
                 "enabled": true,
                 "scopes": [
@@ -244,7 +253,7 @@
                 },
                 "actions": [
                     {
-                        "actionGroupId": "[resourceId('Microsoft.Insights/actionGroups', 'Eris')]",
+                        "actionGroupId": "[resourceId('Microsoft.Insights/actionGroups', 'ErisAG1')]",
                         "webHookProperties": {}
                     }
                 ]
