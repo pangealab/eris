@@ -189,7 +189,7 @@
                 "webhookReceivers": [
                   {
                     "identifierUri": null,
-                    "name": "orlandodemo04",
+                    "name": "orlandodemo04-1",
                     "objectId": null,
                     "serviceUri": "https://orlandodemo04.service-now.com/api/global/em/inbound_event_azure_webhook?service=e757ed56db555010230790c7db961958",
                     "tenantId": null,
@@ -198,7 +198,7 @@
                   },
                   {
                     "identifierUri": null,
-                    "name": "pagerduty",
+                    "name": "pagerduty-1",
                     "objectId": null,
                     "serviceUri": "https://events.pagerduty.com/integration/2845aa7c0a444a22894ebdb21640ee86/enqueue",
                     "tenantId": null,
