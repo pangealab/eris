@@ -1,31 +1,36 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: castor
+  name: eris
   labels:
-    app: castor
+    app: eris
     monitor: 'true'
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: castor
+      app: eris
   template:
     metadata:
       labels:
-        app: castor
+        app: eris
         monitor: 'true'
     spec:
       containers:
-      - name: castor
-        image: pangealab/castor:latest
+      - name: eris
+        image: pangealab/eris:latest
         ports:
         - containerPort: 8080
+        env:
+          - name: SELECTOR
+            value: pets
+          - name: SERVICE
+            value: 'http://aa4ef95f4e73b46f791a7e4f77e74d31-17962749.us-east-2.elb.amazonaws.com/api/items'
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: castor
+  name: eris
   labels:
     app: eris
     monitor: 'true'
@@ -35,4 +40,4 @@ spec:
   - port: 80
     targetPort: 8080
   selector:
-    app: castor          
+    app: eris
