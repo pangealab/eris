@@ -20,7 +20,7 @@ spec:
       - name: eris
         image: pangealab/eris:latest
         ports:
-        - containerPort: 8080
+        - containerPort: 80
         env:
           - name: SELECTOR
             value: pets
@@ -38,6 +38,6 @@ spec:
   type: LoadBalancer
   ports:
   - port: 80
-    targetPort: 8080
+    targetPort: 80
   selector:
     app: eris
