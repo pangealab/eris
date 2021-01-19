@@ -25,7 +25,7 @@ spec:
           - name: SELECTOR
             value: pets
           - name: SERVICE
-            value: 'http://aa4ef95f4e73b46f791a7e4f77e74d31-17962749.us-east-2.elb.amazonaws.com/api/items'
+            value: 'http://a850c381a9ec34a70ab644a84dc30b74-8351632.us-east-2.elb.amazonaws.com/api/items'
 ---
 apiVersion: v1
 kind: Service
